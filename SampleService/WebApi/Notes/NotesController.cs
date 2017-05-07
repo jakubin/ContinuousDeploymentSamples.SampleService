@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Http;
 using AutoMapper;
+using SampleService.DataAccess;
 using SampleService.Logic.Notes;
 
 namespace SampleService.WebApi.Notes
@@ -16,14 +17,14 @@ namespace SampleService.WebApi.Notes
         {
         }
 
-        private NotesController(INotesLogic notesLogic)
+        public NotesController(INotesLogic notesLogic)
         {
             _notesLogic = notesLogic;
         }
 
         [Route("")]
         [HttpGet]
-        public List<NoteModel> Get()
+        public List<NoteModel> GetAll()
         {
             return _notesLogic.GetAll()
                 .Select(Mapper.Map<NoteModel>)
@@ -35,6 +36,11 @@ namespace SampleService.WebApi.Notes
         public NoteModel Get(int id)
         {
             return null;
+        }
+
+        public static void SetupMapper(IMapperConfigurationExpression cfg)
+        {
+            cfg.CreateMap<Note, NoteModel>();
         }
     }
 }

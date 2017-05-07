@@ -108,7 +108,6 @@
     <Compile Include="WebApi\Notes\NoteModel.cs" />
     <Compile Include="WebApi\Notes\NotesController.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="DataAccess\Note.cs">
       <DependentUpon>SampleServiceEntities.tt</DependentUpon>
     </Compile>
