@@ -81,6 +81,9 @@
       <LastGenOutput>Notes.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="ReplaceConfig.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
