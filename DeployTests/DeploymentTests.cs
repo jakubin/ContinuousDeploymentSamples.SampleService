@@ -16,7 +16,7 @@ namespace DeployTests
         [Fact]
         public void NotesApiWorks()
         {
-            Should.NotThrow(() => _client.GetAllNotes());
+            _client.GetAllNotes();
         }
     }
 }

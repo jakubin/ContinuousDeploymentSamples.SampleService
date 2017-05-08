@@ -10,10 +10,14 @@ namespace DeployTests
     public class SampleServiceClient
     {
         private HttpClient _client;
+        private string _baseUrl;
+
+        private string GetUrl(string relativeUrl) => $"{_baseUrl}{relativeUrl}";
 
         public SampleServiceClient(string baseUrl)
         {
-            _client = new HttpClient {BaseAddress = new Uri(baseUrl)};
+            _baseUrl = baseUrl;
+            _client = new HttpClient();
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
@@ -22,7 +26,7 @@ namespace DeployTests
         public void AddNote(NoteModel note)
         {
             var json = JsonConvert.SerializeObject(note);
-            var response = _client.PostAsync("/api/notes", new StringContent(json, Encoding.UTF8, "application/json")).Result;
+            var response = _client.PostAsync(GetUrl("/api/notes"), new StringContent(json, Encoding.UTF8, "application/json")).Result;
             response.EnsureSuccessStatusCode();
         }
 
@@ -33,7 +37,7 @@ namespace DeployTests
 
         private T Get<T>(string path)
         {
-            var json = _client.GetStringAsync(path).Result;
+            var json = _client.GetStringAsync(GetUrl(path)).Result;
             return JsonConvert.DeserializeObject<T>(json);
         }
     }
