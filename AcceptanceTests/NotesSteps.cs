@@ -50,7 +50,7 @@ namespace AcceptanceTests
             var expected = notes.CreateSet<NoteModel>();
 
             _notes.Select(x => x.Content)
-                .ShouldBe(expected.Select(x => x.Content), ignoreOrder: true);
+                .ShouldBe(expected.Select(x => x.Content), true);
         }
     }
 }
