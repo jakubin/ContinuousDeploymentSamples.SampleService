@@ -3,8 +3,8 @@
   <metadata>
     <id>DeploymentTests</id>
     <version>$version$</version>
-    <description></description>
-    <authors></authors>
+    <description>Deployment test</description>
+    <authors>Jakubin</authors>
   </metadata>
   <files>
     <file src="..\packages\xunit.runner.console.2.2.0\tools\*.*" target="tools\xunit"/>
