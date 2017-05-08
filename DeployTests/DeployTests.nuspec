@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>DeploymentTests</id>
+    <version>$version$</version>
+    <description></description>
+    <authors></authors>
+  </metadata>
+  <files>
+    <file src="..\packages\xunit.runner.console.2.2.0\tools\*.*" target="tools\xunit"/>
+  </files>
+</package>
