@@ -32,7 +32,7 @@ namespace AcceptanceTests
 
         public void Reset()
         {
-            _client.DeleteAsync("/api/testing").Result.EnsureSuccessStatusCode();
+            _client.DeleteAsync(GetUrl("/api/testing")).Result.EnsureSuccessStatusCode();
         }
 
         private T Get<T>(string path)
