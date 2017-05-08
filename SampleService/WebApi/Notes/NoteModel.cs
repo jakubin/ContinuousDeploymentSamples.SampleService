@@ -4,7 +4,6 @@ namespace SampleService.WebApi.Notes
 {
     public class NoteModel
     {
-        [Required]
         public int? Id { get; set; }
 
         [Required]

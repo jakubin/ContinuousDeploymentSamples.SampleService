@@ -31,16 +31,24 @@ namespace SampleService.WebApi.Notes
                 .ToList();
         }
 
-        [Route("{id}")]
-        [HttpGet]
-        public NoteModel Get(int id)
+        [Route("")]
+        [HttpPost]
+        public IHttpActionResult Add(NoteModel model)
         {
-            return null;
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var note = Mapper.Map<Note>(model);
+            var id = _notesLogic.Add(note);
+            return Ok(id);
         }
 
         public static void SetupMapper(IMapperConfigurationExpression cfg)
         {
             cfg.CreateMap<Note, NoteModel>();
+            cfg.CreateMap<NoteModel, Note>();
         }
     }
 }

@@ -13,5 +13,15 @@ namespace SampleService.Logic.Notes
                 return db.Notes.ToList();
             }
         }
+
+        public int Add(Note note)
+        {
+            using (var db = new SampleServiceEntities())
+            {
+                db.Notes.Add(note);
+                db.SaveChanges();
+                return note.Id;
+            }
+        }
     }
 }

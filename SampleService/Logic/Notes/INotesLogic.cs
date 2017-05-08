@@ -6,5 +6,7 @@ namespace SampleService.Logic.Notes
     public interface INotesLogic
     {
         List<Note> GetAll();
+
+        int Add(Note note);
     }
 }
