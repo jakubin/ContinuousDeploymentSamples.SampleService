@@ -71,58 +71,19 @@ namespace AcceptanceTests
             this.ScenarioTearDown();
         }
         
-        [Xunit.FactAttribute(DisplayName="Initially there are no notes")]
+        [Xunit.FactAttribute(DisplayName="Adding and getting single note")]
         [Xunit.TraitAttribute("FeatureTitle", "Notes")]
-        [Xunit.TraitAttribute("Description", "Initially there are no notes")]
-        public virtual void InitiallyThereAreNoNotes()
+        [Xunit.TraitAttribute("Description", "Adding and getting single note")]
+        public virtual void AddingAndGettingSingleNote()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Initially there are no notes", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding and getting single note", ((string[])(null)));
 #line 3
 this.ScenarioSetup(scenarioInfo);
 #line 4
- testRunner.When("I request list of notes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 5
- testRunner.Then("I receive no notes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [Xunit.FactAttribute(DisplayName="Adding note")]
-        [Xunit.TraitAttribute("FeatureTitle", "Notes")]
-        [Xunit.TraitAttribute("Description", "Adding note")]
-        public virtual void AddingNote()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Adding note", ((string[])(null)));
-#line 7
-this.ScenarioSetup(scenarioInfo);
-#line 8
- testRunner.When("I add note \"Hello world\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 9
- testRunner.And("I request list of notes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Content"});
-            table1.AddRow(new string[] {
-                        "Hello world"});
-#line 10
- testRunner.Then("I receive the following notes:", ((string)(null)), table1, "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [Xunit.FactAttribute(DisplayName="Getting single note")]
-        [Xunit.TraitAttribute("FeatureTitle", "Notes")]
-        [Xunit.TraitAttribute("Description", "Getting single note")]
-        public virtual void GettingSingleNote()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Getting single note", ((string[])(null)));
-#line 14
-this.ScenarioSetup(scenarioInfo);
-#line 15
  testRunner.When("I add note \"My first note\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 16
+#line 5
  testRunner.And("I request last added note", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 17
+#line 6
  testRunner.Then("I receive note \"My first note\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -134,23 +95,16 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void DeleteNote()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete note", ((string[])(null)));
-#line 19
+#line 8
 this.ScenarioSetup(scenarioInfo);
-#line 20
- testRunner.When("I add note \"First\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 21
- testRunner.And("I add note \"Second\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 22
+#line 9
+ testRunner.When("I add note \"My note\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
  testRunner.And("I delete last added note", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 23
- testRunner.And("I request list of notes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                        "Content"});
-            table2.AddRow(new string[] {
-                        "First"});
-#line 24
- testRunner.Then("I receive the following notes:", ((string)(null)), table2, "Then ");
+#line 11
+ testRunner.And("I request last added note", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 12
+ testRunner.Then("the note is not found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -7,14 +7,6 @@ namespace SampleService.Logic.Notes
 {
     public class NotesLogic : INotesLogic
     {
-        public List<Note> GetAll()
-        {
-            using (var db = new SampleServiceEntities())
-            {
-                return db.Notes.Where(x => !x.IsDeleted).ToList();
-            }
-        }
-
         public int Add(Note note)
         {
             using (var db = new SampleServiceEntities())
@@ -29,7 +21,7 @@ namespace SampleService.Logic.Notes
         {
             using (var db = new SampleServiceEntities())
             {
-                return db.Notes.FirstOrDefault(x => x.Id == id && x.IsDeleted == false);
+                return db.Notes.FirstOrDefault(x => x.Id == id);
             }
         }
 
@@ -37,14 +29,14 @@ namespace SampleService.Logic.Notes
         {
             using (var db = new SampleServiceEntities())
             {
-                var note = db.Notes.FirstOrDefault(x => x.Id == id && x.IsDeleted == false);
+                var note = db.Notes.FirstOrDefault(x => x.Id == id);
 
                 if (note == null)
                 {
                     return false;
                 }
 
-                note.IsDeleted = true;
+                db.Notes.Remove(note);
                 db.SaveChanges();
                 return true;
             }

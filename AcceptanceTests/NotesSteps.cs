@@ -61,6 +61,12 @@ namespace AcceptanceTests
             _notes.ShouldBeEmpty();
         }
 
+        [Then("the note is not found")]
+        public void ThenNoteNotFound()
+        {
+            _note.ShouldBeNull();
+        }
+
         [Then("I receive the following notes:")]
         public void ThenReceiveNotes(Table notes)
         {

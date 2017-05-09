@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -46,7 +47,15 @@ namespace AcceptanceTests
 
         private T Get<T>(string path)
         {
-            var json = _client.GetStringAsync(GetUrl(path)).Result;
+            var response = _client.GetAsync(GetUrl(path)).Result;
+            if (response.StatusCode == HttpStatusCode.NotFound)
+            {
+                return default(T);
+            }
+
+            response.EnsureSuccessStatusCode();
+
+            var json = response.Content.ReadAsStringAsync().Result;
             return JsonConvert.DeserializeObject<T>(json);
         }
     }

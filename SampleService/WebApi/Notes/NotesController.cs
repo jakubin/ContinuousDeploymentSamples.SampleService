@@ -22,15 +22,6 @@ namespace SampleService.WebApi.Notes
             _notesLogic = notesLogic;
         }
 
-        [Route("")]
-        [HttpGet]
-        public List<NoteModel> GetAll()
-        {
-            return _notesLogic.GetAll()
-                .Select(Mapper.Map<NoteModel>)
-                .ToList();
-        }
-
         [Route("{id:int}")]
         [HttpGet]
         public IHttpActionResult GetById(int id)
