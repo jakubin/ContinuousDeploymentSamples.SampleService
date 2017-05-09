@@ -23,11 +23,14 @@ namespace AcceptanceTests
 
         public List<NoteModel> GetAllNotes() => Get<List<NoteModel>>("/api/notes");
 
-        public void AddNote(NoteModel note)
+        public NoteModel GetNote(int id) => Get<NoteModel>($"/api/notes/{id}");
+
+        public int AddNote(NoteModel note)
         {
             var json = JsonConvert.SerializeObject(note);
             var response = _client.PostAsync(GetUrl("/api/notes"), new StringContent(json, Encoding.UTF8, "application/json")).Result;
             response.EnsureSuccessStatusCode();
+            return Int32.Parse(response.Content.ReadAsStringAsync().Result);
         }
 
         public void Reset()
