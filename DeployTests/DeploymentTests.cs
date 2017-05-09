@@ -1,22 +1,21 @@
 ﻿using System.Configuration;
-using Shouldly;
 using Xunit;
 
 namespace DeployTests
 {
     public class DeploymentTests
     {
-        private SampleServiceClient _client;
+        private StatusClient _client;
 
         public DeploymentTests()
         {
-            _client = new SampleServiceClient(ConfigurationManager.AppSettings["ServiceUrl"]);
+            _client = new StatusClient(ConfigurationManager.AppSettings["ServiceUrl"]);
         }
 
         [Fact]
-        public void NotesApiWorks()
+        public void CheckStatus()
         {
-            _client.GetAllNotes();
+            _client.CheckStatus();
         }
     }
 }

@@ -49,5 +49,22 @@ namespace SampleService.Logic.Notes
                 return true;
             }
         }
+
+        public bool CheckStatus()
+        {
+            try
+            {
+                using (var db = new SampleServiceEntities())
+                {
+                    db.Database.ExecuteSqlCommand("SELECT 1");
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }

@@ -12,5 +12,7 @@ namespace SampleService.Logic.Notes
         Note GetById(int id);
 
         bool Delete(int id);
+
+        bool CheckStatus();
     }
 }

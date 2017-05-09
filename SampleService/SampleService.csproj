@@ -132,6 +132,7 @@
     <Compile Include="Logic\Notes\INotesLogic.cs" />
     <Compile Include="Logic\Notes\NotesLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebApi\Status\StatusController.cs" />
     <Compile Include="WebApi\Testing\TestingController.cs" />
   </ItemGroup>
   <ItemGroup>
