@@ -10,3 +10,8 @@ Scenario: Adding note
 	Then I receive the following notes:
 	| Content     |
 	| Hello world |
+
+Scenario: Getting single note
+	When I add note "My first note"
+	And I request last added note
+	Then I receive note "My first note"

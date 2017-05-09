@@ -31,6 +31,19 @@ namespace SampleService.WebApi.Notes
                 .ToList();
         }
 
+        [Route("{id:int}")]
+        [HttpGet]
+        public IHttpActionResult GetById(int id)
+        {
+            var note = _notesLogic.GetById(id);
+            if (note == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(Mapper.Map<NoteModel>(note));
+        }
+
         [Route("")]
         [HttpPost]
         public IHttpActionResult Add(NoteModel model)

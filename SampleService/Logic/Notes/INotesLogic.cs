@@ -8,5 +8,7 @@ namespace SampleService.Logic.Notes
         List<Note> GetAll();
 
         int Add(Note note);
+
+        Note GetById(int id);
     }
 }

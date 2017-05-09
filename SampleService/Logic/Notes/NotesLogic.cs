@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SampleService.DataAccess;
 
@@ -21,6 +22,14 @@ namespace SampleService.Logic.Notes
                 db.Notes.Add(note);
                 db.SaveChanges();
                 return note.Id;
+            }
+        }
+
+        public Note GetById(int id)
+        {
+            using (var db = new SampleServiceEntities())
+            {
+                return db.Notes.FirstOrDefault(x => x.Id == id);
             }
         }
     }

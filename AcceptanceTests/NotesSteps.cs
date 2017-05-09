@@ -14,6 +14,10 @@ namespace AcceptanceTests
 
         private List<NoteModel> _notes;
 
+        private NoteModel _note;
+
+        private int _lastNoteId;
+
         public NotesSteps()
         {
             _client = new SampleServiceClient(ConfigurationManager.AppSettings["ServiceUrl"]);
@@ -31,11 +35,18 @@ namespace AcceptanceTests
             _notes = _client.GetAllNotes();
         }
 
+        [When("I request last added note")]
+        public void WhenRequestLastAdded()
+        {
+            _note = _client.GetNote(_lastNoteId);
+        }
+
         [When("I add note \"(.*)\"")]
         public void WhenAddNote(string content)
         {
             var note = new NoteModel {Content = content};
-            _client.AddNote(note);
+            var id = _client.AddNote(note);
+            _lastNoteId = id;
         }
 
         [Then("I receive no notes")]
@@ -51,6 +62,12 @@ namespace AcceptanceTests
 
             _notes.Select(x => x.Content)
                 .ShouldBe(expected.Select(x => x.Content), true);
+        }
+
+        [Then("I receive note \"(.*)\"")]
+        public void ThenReceiveNote(string content)
+        {
+            _note.Content.ShouldBe(content);
         }
     }
 }
