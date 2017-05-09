@@ -10,5 +10,7 @@ namespace SampleService.Logic.Notes
         int Add(Note note);
 
         Note GetById(int id);
+
+        bool Delete(int id);
     }
 }

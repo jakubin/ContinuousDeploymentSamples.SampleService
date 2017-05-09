@@ -11,7 +11,7 @@ namespace SampleService.Logic.Notes
         {
             using (var db = new SampleServiceEntities())
             {
-                return db.Notes.ToList();
+                return db.Notes.Where(x => !x.IsDeleted).ToList();
             }
         }
 
@@ -29,7 +29,24 @@ namespace SampleService.Logic.Notes
         {
             using (var db = new SampleServiceEntities())
             {
-                return db.Notes.FirstOrDefault(x => x.Id == id);
+                return db.Notes.FirstOrDefault(x => x.Id == id && x.IsDeleted == false);
+            }
+        }
+
+        public bool Delete(int id)
+        {
+            using (var db = new SampleServiceEntities())
+            {
+                var note = db.Notes.FirstOrDefault(x => x.Id == id && x.IsDeleted == false);
+
+                if (note == null)
+                {
+                    return false;
+                }
+
+                db.Notes.Remove(note);
+                db.SaveChanges();
+                return true;
             }
         }
     }

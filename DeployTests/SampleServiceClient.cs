@@ -23,18 +23,6 @@ namespace DeployTests
 
         public List<NoteModel> GetAllNotes() => Get<List<NoteModel>>("/api/notes");
 
-        public void AddNote(NoteModel note)
-        {
-            var json = JsonConvert.SerializeObject(note);
-            var response = _client.PostAsync(GetUrl("/api/notes"), new StringContent(json, Encoding.UTF8, "application/json")).Result;
-            response.EnsureSuccessStatusCode();
-        }
-
-        public void Reset()
-        {
-            _client.DeleteAsync(GetUrl("/api/testing")).Result.EnsureSuccessStatusCode();
-        }
-
         private T Get<T>(string path)
         {
             var json = _client.GetStringAsync(GetUrl(path)).Result;

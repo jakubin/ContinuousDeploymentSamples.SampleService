@@ -33,6 +33,12 @@ namespace AcceptanceTests
             return Int32.Parse(response.Content.ReadAsStringAsync().Result);
         }
 
+        public void DeleteNote(int id)
+        {
+            var response = _client.DeleteAsync(GetUrl($"/api/notes/{id}")).Result;
+            response.EnsureSuccessStatusCode();
+        }
+
         public void Reset()
         {
             _client.DeleteAsync(GetUrl("/api/testing")).Result.EnsureSuccessStatusCode();

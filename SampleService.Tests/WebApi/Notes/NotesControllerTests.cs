@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Web.Http.Results;
 using AutoMapper;
 using NSubstitute;
 using SampleService.DataAccess;
@@ -25,30 +24,26 @@ namespace SampleService.Tests.WebApi.Notes
         }
 
         [Fact]
-        public void GetAll_ReturnsAll()
+        public void GetById_Found()
         {
-            var notes = new List<Note>
-            {
-                new Note {Id = 1, Content = "Note1"},
-                new Note {Id = 1, Content = "Note2"},
-            };
-            _notesLogic.GetAll().Returns(notes);
+            var note = new Note {Id = 1, Content = "Note1"};
+            _notesLogic.GetById(1).Returns(note);
 
-            var actual = _controller.GetAll();
+            var actual = _controller.GetById(1);
 
-            actual.Select(x => new {x.Id, x.Content})
-                .ShouldBe(notes.Select(x => new {Id = (int?) x.Id, x.Content}));
+            var actualNote = actual.ShouldBeOfType<OkNegotiatedContentResult<NoteModel>>().Content;
+            actualNote.Id.ShouldBe(1);
+            actualNote.Content.ShouldBe("Note1");
         }
 
         [Fact]
-        public void GetAll_ReturnsEmpty()
+        public void GetById_NotFound()
         {
-            var notes = new List<Note>();
-            _notesLogic.GetAll().Returns(notes);
+            _notesLogic.GetById(1).Returns((Note)null);
 
-            var actual = _controller.GetAll();
+            var actual = _controller.GetById(1);
 
-            actual.ShouldBeEmpty();
+            actual.ShouldBeOfType<NotFoundResult>();
         }
     }
 }

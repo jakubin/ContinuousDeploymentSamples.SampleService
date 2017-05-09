@@ -44,6 +44,19 @@ namespace SampleService.WebApi.Notes
             return Ok(Mapper.Map<NoteModel>(note));
         }
 
+        [Route("{id:int}")]
+        [HttpDelete]
+        public IHttpActionResult DeleteById(int id)
+        {
+            var deleted = _notesLogic.Delete(id);
+            if (!deleted)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
+
         [Route("")]
         [HttpPost]
         public IHttpActionResult Add(NoteModel model)

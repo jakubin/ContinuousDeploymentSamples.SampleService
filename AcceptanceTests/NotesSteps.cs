@@ -49,6 +49,12 @@ namespace AcceptanceTests
             _lastNoteId = id;
         }
 
+        [When("I delete last added note")]
+        public void WhenDeleteLastAdded()
+        {
+            _client.DeleteNote(_lastNoteId);
+        }
+
         [Then("I receive no notes")]
         public void ThenReceiveNoNotes()
         {

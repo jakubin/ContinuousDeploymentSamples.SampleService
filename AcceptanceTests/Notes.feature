@@ -15,3 +15,12 @@ Scenario: Getting single note
 	When I add note "My first note"
 	And I request last added note
 	Then I receive note "My first note"
+
+Scenario: Delete note
+	When I add note "First"
+	And I add note "Second"
+	And I delete last added note
+	And I request list of notes
+	Then I receive the following notes:
+	| Content |
+	| First   |
