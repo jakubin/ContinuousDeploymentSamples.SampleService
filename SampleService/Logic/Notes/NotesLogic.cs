@@ -44,7 +44,7 @@ namespace SampleService.Logic.Notes
                     return false;
                 }
 
-                db.Notes.Remove(note);
+                note.IsDeleted = true;
                 db.SaveChanges();
                 return true;
             }
