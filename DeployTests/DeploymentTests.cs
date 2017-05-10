@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using Shouldly;
 using Xunit;
 
 namespace DeployTests
@@ -16,6 +17,16 @@ namespace DeployTests
         public void CheckStatus()
         {
             _client.CheckStatus();
+        }
+
+        [Fact]
+        public void HasRightVersion()
+        {
+            var expected = ConfigurationManager.AppSettings["Version"];
+
+            var actual = _client.GetVersion();
+            
+            actual.ShouldBe(expected);
         }
     }
 }

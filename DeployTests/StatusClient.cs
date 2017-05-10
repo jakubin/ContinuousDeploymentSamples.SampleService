@@ -22,5 +22,12 @@ namespace DeployTests
             var response = _client.GetAsync(GetUrl("/api/status")).Result;
             response.EnsureSuccessStatusCode();
         }
+
+        public string GetVersion()
+        {
+            var response = _client.GetAsync(GetUrl("/api/status/version")).Result;
+            response.EnsureSuccessStatusCode();
+            return response.Content.ReadAsStringAsync().Result;
+        }
     }
 }
