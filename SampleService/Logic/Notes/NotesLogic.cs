@@ -25,6 +25,14 @@ namespace SampleService.Logic.Notes
             }
         }
 
+        public IList<Note> GetAll()
+        {
+            using (var db = new SampleServiceEntities())
+            {
+                return db.Notes.ToList();
+            }
+        }
+
         public bool Delete(int id)
         {
             using (var db = new SampleServiceEntities())

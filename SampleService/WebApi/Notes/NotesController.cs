@@ -62,6 +62,15 @@ namespace SampleService.WebApi.Notes
             return Ok(id);
         }
 
+        [Route("")]
+        [HttpGet]
+        public IList<NoteModel> GetNotes()
+        {
+            return _notesLogic.GetAll()
+                .Select(Mapper.Map<NoteModel>)
+                .ToList();
+        }
+
         public static void SetupMapper(IMapperConfigurationExpression cfg)
         {
             cfg.CreateMap<Note, NoteModel>();

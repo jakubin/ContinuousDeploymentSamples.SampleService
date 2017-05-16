@@ -12,5 +12,6 @@ namespace SampleService.Logic.Notes
         bool Delete(int id);
 
         bool CheckStatus();
+        IList<Note> GetAll();
     }
 }
